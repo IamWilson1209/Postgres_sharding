@@ -6,8 +6,9 @@ Implement sharding using PostgreSQL.
 
 ## Functionality
 Creates 5 shards.<br>
-Create api to post url to specific shard.
-Create api to get shard information by specific hashed url id.
+Create API to post URLs to a specific shard.<br>
+Create an API to get shard information using a specific hashed URL ID.
+Using hashring to distribute URLs to different shards.
 
 ## How to use this repository
 
@@ -15,7 +16,7 @@ Create api to get shard information by specific hashed url id.
 ```npm install```
 
 ### 2. Please make sure you've spun up docker's PostgreSQL through the following command:<br>
-Buidling the image
+Building the image
 ```docker build -t pgshard .```
 
 Spin up the containers
