@@ -1,8 +1,9 @@
-const app = require('express')();
-const { connect } = require('http2');
-const { Client } = require('pg');
-const crypto = require('crypto');
-const HashRing = require('hashring');
+import express from 'express';
+import { Client } from 'pg';
+import crypto from 'crypto';
+import HashRing from 'hashring';
+
+export const app = express();
 const hr = new HashRing();
 
 /* 
@@ -23,35 +24,35 @@ hr.add('5436');
 const clients = {
   5432: new Client({
     host: 'localhost',
-    post: '5432',
+    port: '5432',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5433: new Client({
     host: 'localhost',
-    post: '5433',
+    port: '5433',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5434: new Client({
     host: 'localhost',
-    post: '5434',
+    port: '5434',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5435: new Client({
     host: 'localhost',
-    post: '5435',
+    port: '5435',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5436: new Client({
     host: 'localhost',
-    post: '5436',
+    port: '5436',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
@@ -59,7 +60,7 @@ const clients = {
 };
 
 connect();
-async function connectToDatabase() {
+async function connect() {
   await clients['5432'].connect();
   await clients['5433'].connect();
   await clients['5434'].connect();
@@ -119,6 +120,6 @@ app.post('/', async (req, res) => {
 const PORT = 3000;
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
-  await connectToDatabase();
+  // await connectToDatabase();
   console.log('Connected to all databases');
 });
